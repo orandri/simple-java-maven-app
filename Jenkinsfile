@@ -33,6 +33,14 @@ pipeline{
                 bat 'docker push orandri91/java-hello-world'
             }
         }
+
+        post{
+            failure{
+                emailext body: 'Ce Build $BUILD_NUMBER a échoué',
+                recipientProviders:[requestor()], subject: 'build', to:'oliviertest91@gmail.com'
+            }
+}
+
         
         
 
